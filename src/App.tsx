@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import InputMask from 'react-input-mask';
 import styles from './App.module.css';
 import poweredImage from './assets/powered.png';
 import leftArrowImage from './assets/leftarrow.png';
@@ -39,22 +40,24 @@ const App = () => {
             <p>IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização
                Mundial de Saúde para calcular o peso ideal de cada pessoa.
             </p>
-
-            <input 
-              type='number'
-              placeholder='Digite a sua altura. Ex: 1.5 (em métros)'
+          
+            <InputMask 
+              mask="9.99" 
+              maskChar="0" 
+              placeholder='Digite a sua altura. Ex: 1.5 (em métros)' 
               value={heightField > 0 ? heightField : ''}
-              onChange={e => setHeightField(parseFloat(e.target.value))}
               disabled={toShow ? true : false}
-            />
+              onChange={e => setHeightField(parseFloat(e.target.value))}>
+            </InputMask>
 
-            <input 
-              type='number'
+            <InputMask 
+              mask="99.9" 
+              maskChar="0" 
               placeholder='Digite o seu peso. Ex: 75.3 (em kg)'
               value={weightField > 0 ? weightField : ''}
-              onChange={e => setWeightField(parseFloat(e.target.value))}
               disabled={toShow ? true : false}
-            />
+              onChange={e => setWeightField(parseFloat(e.target.value))}>
+            </InputMask>
 
             <button onClick={handleCalculateButton} disabled={toShow ? true : false}>Calcular</button>
 
